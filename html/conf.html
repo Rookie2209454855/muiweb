@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<script src="../js/htmljs/jquery.min.js"></script>
+		<!--<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />-->
+		<style>
+			.mui-btn {
+				font-size: 16px;
+				padding: 8px;
+				margin: 3px;
+			}
+			h5.mui-content-padded {
+				margin-left: 3px;
+				margin-top: 20px !important;
+			}
+			h5.mui-content-padded:first-child {
+				margin-top: 12px !important;
+			}
+			.ui-alert {
+				text-align: center;
+				padding: 20px 10px;
+				font-size: 16px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="../home.html"></a>
+			<h1 class="mui-title">服务配置</h1>
+		</header>
+		
+		<div class="mui-content">
+			
+			
+			<div class="mui-card">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">文件筛选</a>
+						<div class="mui-collapse-content">
+							<button id='showUserPicker' class="mui-btn mui-btn-block" type='button'>请选择</button>
+							<button type="button" class="mui-btn mui-btn-primary mui-btn-block" onclick="seacher()">扫描</button>
+						</div>
+					</li>
+					
+					
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">菜单</a>
+						<div class="mui-collapse-content">
+							<form class="mui-input-group">
+								<div class="mui-input-row">
+									<label>文件服务地址:</label>
+									<input type="text" class="mui-input-clear" placeholder="请输入文件服务地址">
+								</div>
+								
+								<div class="mui-button-row">
+									<button class="mui-btn mui-btn-primary mui-btn-block" type="button" onclick="updateFileip()">确认</button>
+									<!-- <button class="mui-btn mui-btn-primary" type="button" onclick="return false;">取消</button> -->
+								</div>
+							</form>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+			
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<!--<script src="../js/mui.picker.min.js"></script>-->
+		<script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
+		<script src="../js/htmljs/utils.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init()
+		 	var picker = new mui.PopPicker();
+		 	var showUserPickerButton = document.getElementById('showUserPicker');
+			mui.ajax(reapi()+'/v1/resultdisks',
+				{
+				dataType:'json',//服务器返回json格式数据
+				type:'get',//HTTP请求类型
+				success:function(data){
+						var jdata=JSON.parse(data.data)
+						console.log(jdata)
+						picker.setData(jdata); 
+						showUserPickerButton.addEventListener('tap', function(event) {
+							picker.show(function(items) {
+								showUserPicker.innerText = JSON.stringify(items[0].text);
+								showUserPickerButton.value=JSON.stringify(items[0].value);
+							});
+					}, false);
+				}
+			})
+			
+			function seacher(){
+				var showUserPickerButton=$("#showUserPicker");
+				showUserPickerButton.attr("disabled","disabled");
+				var dir=showUserPickerButton.val();
+				if(dir!=0){
+				$.ajax({
+					type:'GET',
+					data:{
+						"dir":dir
+					},
+					dataType: "json",
+					url:reapi()+"/v1/init",
+					success:function(data){
+						showUserPickerButton.removeAttr("disabled");
+						mui.alert("已新增"+data+"条文件!");
+					},
+					error:function(){
+	                    showalert("添加磁盘文件失败");
+					}
+				})
+			}
+		}
+		
+			function updateFileip(){
+				alert(localStorage.getItem("userid"));
+			}
+		</script>
+	</body>
+
+</html>

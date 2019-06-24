@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<script src="../js/htmljs/jquery.min.js"></script>
+		<script src="../js/htmljs/jquery.tmpl.min.js"></script>
+		<style>
+	        .m{ width: 740px; height: 400px; margin-left: auto; margin-right: auto; margin-top: 100px; }
+	        .tt-video-box{    position: relative;width: 100%;height: 18rem}
+	        .tt-video-video{    width: 100%;height: inherit;max-height: 18rem;background-color: #000}
+	    </style>
+	</head>
+
+	<body >
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="listview.html"></a>
+			<h1 class="mui-title" id="videoname">视频列表</h1>
+		</header>
+		<div class="mui-content">
+			<div class="tt-video-box">
+			    <video id="audio_id" controls preload="auto" class="tt-video-video"
+			           poster="" data-setup="{}">
+			        <p class="vjs-no-js">
+			            To view this video please enable JavaScript, and consider upgrading to a web browser that
+			            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+			        </p>
+			    </video>
+			</div>
+			<!--<div class="mui-content">
+				<h1 class="mui-title">相关视频</h1>
+				<ul class="mui-table-view" id="videLink">
+				
+				</ul>
+			</div>-->
+		</div>
+		<script id="videLinkTemplate" type="text/x-jquery-tmpl">
+		{{each(i,item) links}}
+			<li class="mui-table-view-cell">
+				<div class="mui-slider-right mui-disabled">
+					<a class="mui-btn mui-btn-green mui-icon mui-icon-videocam" href="video.html?id={{= item.id}}"></a>
+					<a class="mui-btn mui-btn-red mui-icon mui-icon-trash"  onclick="delVideo(this,{{= item.id}});" ></a>
+				</div>
+				<div class="mui-slider-handle">
+					<div class="mui-table-cell">
+						{{= item.name}}
+					</div>
+				</div>
+			</li>
+		{{/each}}
+		</script>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/htmljs/utils.js"></script>
+		<script src="../js/htmljs/video.js"></script>
+	</body>
+
+</html>
