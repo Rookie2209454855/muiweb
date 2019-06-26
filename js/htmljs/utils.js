@@ -49,7 +49,11 @@ function showalert(msg) {
 
 
 function reapi(){
-	return "http://127.0.0.1:9090/videoServer";
+	var serverip=localStorage.getItem("serverIp");
+	if(serverip==null){
+		serverip="http://37.love521.store:90/videoServer";
+	}
+	return serverip;
 }
 
 /**加载分页插件**/

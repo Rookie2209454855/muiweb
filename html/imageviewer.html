@@ -185,7 +185,8 @@
 	<script id="videLinkTemplate" type="text/x-jquery-tmpl">
 		{{each(i,item) links}}
 			<p>
-				<img id="ts" src="{{= item.imageUri}}" data-preview-src="" data-preview-group="1" />
+				<img id="ts" src="{{= localStorage.getItem("fileip")}}/{{= item.filePath}}" data-preview-src="" data-preview-group="1" />
+				<!-- <p>{{= localStorage.getItem("fileip")}}+"/"+ {{= item.filePath}}</p> -->
 				<!--<button type="button" class="mui-btn mui-btn-danger mui-btn-block" onclick="delImg(this,{{= item.id}});" >delete</button>-->
 			</p>
 			

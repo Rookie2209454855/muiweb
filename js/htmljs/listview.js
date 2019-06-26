@@ -14,10 +14,7 @@ $(document).ready(function(){
 			},
 			url:reapi()+"/v1"+"/showallforpage",
 			success:function(data){
-				
 				var jdata=JSON.parse(data.data)
-				console.log(jdata.list)
-				console.log(data);
 				$("#videLink").empty();
 				$("#videLinkTemplate").tmpl({links:jdata.list}).appendTo("#videLink");
 				//$("#totalpage").text("共"+data.record+"部视频,"+data.totalPages+"页")

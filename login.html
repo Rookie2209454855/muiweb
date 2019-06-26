@@ -212,7 +212,7 @@
 									var jdata=JSON.parse(rs.data)
 									 //alert(jdata);
 									if(jdata!=null){
-										localStorage.setItem("userid",jdata.id);
+										/* localStorage.setItem("userid",jdata.id); */
 										toMain();
 									}else{
 										plus.nativeUI.toast("账号不存在");

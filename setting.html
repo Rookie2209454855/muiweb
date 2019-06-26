@@ -182,12 +182,11 @@
 									<form class="mui-input-group">
 										<div class="mui-input-row">
 											<label>设置站点:</label>
-											<input type="text" class="mui-input-clear" placeholder="请输入站点地址">
+											<input type="text" id="serverid" class="mui-input-clear" value="127.0.0.1" placeholder="请输入服务站点地址">
 										</div>
 										
 										<div class="mui-button-row">
-											<button class="mui-btn mui-btn-primary" type="button" onclick="return false;">确认</button>&nbsp;&nbsp;
-											<button class="mui-btn mui-btn-primary" type="button" onclick="return false;">取消</button>
+											<button class="mui-btn mui-btn-primary" type="button" onclick="editServerIp()">确认</button>
 										</div>
 									</form>
 								</div>
@@ -556,6 +555,13 @@
 				//				console.log(e.detail.page.id + ' back');
 			});
 		})(mui);
+	
+		function editServerIp(){
+			var editvalue=document.getElementById("serverid").value
+			serverIp="http://"+editvalue+"/videoServer";
+			localStorage.setItem("serverIp",serverIp);
+			plus.nativeUI.toast("站点"+serverIp+"添加成功！");
+		}
 	</script>
 
 </html>

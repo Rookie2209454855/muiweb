@@ -59,7 +59,7 @@
 							<form class="mui-input-group">
 								<div class="mui-input-row">
 									<label>文件服务地址:</label>
-									<input type="text" class="mui-input-clear" placeholder="请输入文件服务地址">
+									<input type="text" id="fileip" class="mui-input-clear" value="127.0.0.1" placeholder="请输入文件服务地址">
 								</div>
 								
 								<div class="mui-button-row">
@@ -90,7 +90,6 @@
 				type:'get',//HTTP请求类型
 				success:function(data){
 						var jdata=JSON.parse(data.data)
-						console.log(jdata)
 						picker.setData(jdata); 
 						showUserPickerButton.addEventListener('tap', function(event) {
 							picker.show(function(items) {
@@ -105,6 +104,7 @@
 				var showUserPickerButton=$("#showUserPicker");
 				showUserPickerButton.attr("disabled","disabled");
 				var dir=showUserPickerButton.val();
+				alert(dir)
 				if(dir!=0){
 				$.ajax({
 					type:'GET',
@@ -115,7 +115,8 @@
 					url:reapi()+"/v1/init",
 					success:function(data){
 						showUserPickerButton.removeAttr("disabled");
-						mui.alert("已新增"+data+"条文件!");
+						//mui.alert("已新增"+data+"条文件!");
+						//plus.nativeUI.toast(("已新增"+data+"条文件!");
 					},
 					error:function(){
 	                    showalert("添加磁盘文件失败");
@@ -125,7 +126,10 @@
 		}
 		
 			function updateFileip(){
-				alert(localStorage.getItem("userid"));
+				var fileip="http://"+document.getElementById("fileip").value;
+				localStorage.setItem("fileip",fileip)
+				//alert(localStorage.getItem("fileip"));
+				plus.nativeUI.toast("文件地址修改成功！");
 			}
 		</script>
 	</body>

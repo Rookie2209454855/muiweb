@@ -1,13 +1,16 @@
 	var vid=window.location.href.split("=")[1];
-	console.log(vid)
+	/* console.log(vid) */
 	$.ajax({
 			type:'GET',
 			data:{"id":vid},
-			url:reapi()+"/showVideo",
+			url:reapi()+"/v1/showvideo",
 			success:function(data){
-				console.log(data);
-				$("#audio_id").append("<source src='http://"+data.uri+"'  type='video/mp4'>")
-				$("#videoname").text(data.videoName.split(".")[0]);
+				var jdata=JSON.parse(data.data)
+				var filee=localStorage.getItem("fileip")+"/"+jdata.uri
+				$("#audio_id").append("<source src='"+filee+"'  type='video/mp4'>")
+				$("#videoname").text(jdata.videoName);
+				/* plus.nativeUI.toast(jdata.videoName);
+				mui.alert(filee); */
 			},
 			error:function(){
 				mui.alert("加载视频列表失败");
