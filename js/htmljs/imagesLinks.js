@@ -2,20 +2,30 @@
 $(document).ready(function(){
 	showLink();
 
+
 	function showLink() {
 		mui.ajax({
 			type:'GET',
 			data:{
-				"pageNo":pageNo,
-				"pageSize":pageSize,
+				"pageNo":1,
+				"pageSize":20,
 				"type":"jpg"
 			},
-			url:reapi()+"/v1/showallforpage",
+			url:returnapi()+"/v1/showallforpage",
 			success:function(data){
 				var jdata=JSON.parse(data.data)
+				
 				$("#image-list").empty();
 				$("#videLinkTemplate").tmpl({links:jdata.list}).appendTo("#image-list");
-				$("#totalpage").text("共"+data.totalPages+"页")
+				
+				var prePage=jdata.prePage;
+				var nextPage=jdata.nextPage;
+				
+				$("#prePage").val(prePage);
+				$("#nextPage").val(nextPage);
+				
+				/* localStorage.setItem("prePage",jdata.prePage);
+				localStorage.setItem("nextPage",jdata.nextPage); */
 			},
 			error:function(){
 				mui.alert("加载视频列表失败");
@@ -23,8 +33,7 @@ $(document).ready(function(){
 		})
 	}
 	
-	//调用跳页方法
-	jumpage(showLink);
+	
 	
 	mui.previewImage();
 	
@@ -39,28 +48,7 @@ $(document).ready(function(){
 	   release:false//默认为false，不监听
 	  }
 	});
-		
+	
 
   })
-	function delImg(imgg,imageid) {
-		console.log(imgg)
-	    $.ajax({
-			type:'GET',
-			data:{
-				"vid":imageid
-			},
-			url:reapi()+"/v1/delbyvideoid",
-			success:function(){
-				var s=imgg;
-				var node1=s.parentNode;
-				node1.parentNode.removeChild(node1);
-			},
-			error:function(){
-	            showalert("删除失败，请联系管理员!！");
-			}
-		})
-	}
-
-
-
-
+	

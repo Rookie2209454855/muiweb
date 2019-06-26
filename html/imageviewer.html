@@ -178,7 +178,31 @@
 		</div>
 
 		<!--分页插件-->
-		 <div class="mui-table-view-cell" id="pages">
+		<div class="mui-content-padded">
+			<ul class="mui-pager">
+				<li class="mui-previous" value="">
+					<input type="hidden" id="prePage" value="" />
+					<a href="#"  onclick="prePage('jpg')">
+						上一页
+					</a>
+				</li>
+				
+				<li>
+					<div class="mui-numbox">
+						<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+						<input id="box" class="mui-input-numbox" type="number" />
+						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+					</div>
+					<button id="btn" class="mui-btn" style="padding: 7px 12px;" onclick="jump('jpg')">跳转</button>
+				</li>
+				
+				<input type="hidden" id="nextPage" value="" />
+				<li class="mui-next">
+					<a href="#" onclick="nextPage('jpg');">
+						下一页
+					</a>
+				</li>
+			</ul>
 		</div>
 		
 	</body>
@@ -186,7 +210,7 @@
 		{{each(i,item) links}}
 			<p>
 				<img id="ts" src="{{= localStorage.getItem("fileip")}}/{{= item.filePath}}" data-preview-src="" data-preview-group="1" />
-				<!-- <p>{{= localStorage.getItem("fileip")}}+"/"+ {{= item.filePath}}</p> -->
+				<!-- <p>{{= localStorage.getItem("fileip")}}/{{= item.filePath}}</p> -->
 				<!--<button type="button" class="mui-btn mui-btn-danger mui-btn-block" onclick="delImg(this,{{= item.id}});" >delete</button>-->
 			</p>
 			
@@ -194,6 +218,7 @@
 	</script>
 	<script src="../js/mui.zoom.js"></script>
 	<script src="../js/mui.previewimage.js"></script>
-	<script src="../js/htmljs/utils.js"></script>
+	<script src="../js/htmljs/reapi.js"></script>
 	<script src="../js/htmljs/imagesLinks.js"></script>
+	<script src="../js/htmljs/fenye.js"></script>
 </html>

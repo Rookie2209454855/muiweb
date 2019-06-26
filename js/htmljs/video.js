@@ -3,7 +3,7 @@
 	$.ajax({
 			type:'GET',
 			data:{"id":vid},
-			url:reapi()+"/v1/showvideo",
+			url:returnapi()+"/v1/showvideo",
 			success:function(data){
 				var jdata=JSON.parse(data.data)
 				var filee=localStorage.getItem("fileip")+"/"+jdata.uri

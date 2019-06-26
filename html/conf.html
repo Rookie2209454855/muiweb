@@ -79,12 +79,12 @@
 		<!--<script src="../js/mui.picker.min.js"></script>-->
 		<script src="../js/mui.picker.js"></script>
 		<script src="../js/mui.poppicker.js"></script>
-		<script src="../js/htmljs/utils.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/htmljs/reapi.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			mui.init()
 		 	var picker = new mui.PopPicker();
 		 	var showUserPickerButton = document.getElementById('showUserPicker');
-			mui.ajax(reapi()+'/v1/resultdisks',
+			mui.ajax(returnapi()+'/v1/resultdisks',
 				{
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
@@ -104,7 +104,6 @@
 				var showUserPickerButton=$("#showUserPicker");
 				showUserPickerButton.attr("disabled","disabled");
 				var dir=showUserPickerButton.val();
-				alert(dir)
 				if(dir!=0){
 				$.ajax({
 					type:'GET',
@@ -112,7 +111,7 @@
 						"dir":dir
 					},
 					dataType: "json",
-					url:reapi()+"/v1/init",
+					url:returnapi()+"/v1/init",
 					success:function(data){
 						showUserPickerButton.removeAttr("disabled");
 						//mui.alert("已新增"+data+"条文件!");
@@ -128,6 +127,7 @@
 			function updateFileip(){
 				var fileip="http://"+document.getElementById("fileip").value;
 				localStorage.setItem("fileip",fileip)
+				document.getElementById("fileip").value=localStorage.getItem("fileip")
 				//alert(localStorage.getItem("fileip"));
 				plus.nativeUI.toast("文件地址修改成功！");
 			}

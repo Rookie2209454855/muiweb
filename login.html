@@ -116,8 +116,11 @@
 			</form>
 			<div class="mui-content-padded">
 				<button id='login' class="mui-btn mui-btn-block mui-btn-primary">登录</button>
-				<div class="link-area"><a id='reg' href="reg.html">注册账号</a> <span class="spliter">|</span> <a href="forget_password.html" id='forgetPassword'>忘记密码</a>
-				</div>
+			<!-- 	<div class="link-area">
+					<a id='reg' href="reg.html">注册账号</a>
+					 <span class="spliter">|</span>
+					 <a href="forget_password.html" id='forgetPassword'>忘记密码</a>
+				</div> -->
 			</div>
 			<div class="mui-content-padded oauth-area">
 
@@ -241,7 +244,7 @@
 							app.setSettings(settings);
 						}, 50);
 					}, false);
-					regButton.addEventListener('tap', function(event) {
+					/* regButton.addEventListener('tap', function(event) {
 						$.openWindow({
 							url: 'reg.html',
 							id: 'reg',
@@ -256,8 +259,8 @@
 								autoShow: false
 							}
 						});
-					}, false);
-					forgetButton.addEventListener('tap', function(event) {
+					}, false); */
+					/* forgetButton.addEventListener('tap', function(event) {
 						$.openWindow({
 							url: 'forget_password.html',
 							id: 'forget_password',
@@ -272,7 +275,7 @@
 								autoShow: false
 							}
 						});
-					}, false);
+					}, false); */
 					//
 					/* window.addEventListener('resize', function() {
 						oauthArea.style.display = document.body.clientHeight > 400 ? 'block' : 'none';
